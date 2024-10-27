@@ -16,13 +16,16 @@
     "ws": "^8.18.0"
   },
   "nodemonConfig": {
-  "watch": ["src"],
-  "ext": "ts",
-  "exec": "ts-node src/index.ts"
- },
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src/index.ts"
+  },
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^22.8.1",
+    "@types/ws": "^8.5.12",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
