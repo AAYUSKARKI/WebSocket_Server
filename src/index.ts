@@ -30,15 +30,19 @@ const broadcastMessage = (sender: WebSocket, type: "send" | "receive", content: 
         .forEach(client => client.send(payload));
 };
 
-//send private message
-const sendPrivateMessage = (sender: WebSocket, receiver: string|undefined, content: string|undefined) => {
-    if (!receiver) {
-        return;
+// Send private message
+const sendPrivateMessage = (sender: WebSocket, receiver: string | undefined, content: string | undefined) => {
+    if (!receiver || !content) {
+        return; // Exit if receiver or content is undefined
     }
     const receiverClient = onlineUsers.get(receiver);
-    if (receiverClient) {
-        broadcastMessage(sender, "send", content);
-        broadcastMessage(receiverClient, "receive", content);
+    if (receiverClient && receiverClient.readyState === WebSocket.OPEN) {
+        const payload = JSON.stringify({ type: "private", message: content, user: receiver });
+        receiverClient.send(payload); // Send directly to the receiver
+
+        sender.send(JSON.stringify({ type: "acknowledgment", status: "delivered", content: content }));
+    } else {
+        console.error(`User ${receiver} not connected`);
     }
 }
 // Handle a new WebSocket connection

@@ -1,0 +1,44 @@
+.chat-app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.messages-container {
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.message {
+  margin: 5px 0;
+}
+
+.message.acknowledgment {
+  color: blue; /* Different color for acknowledgment messages */
+}
+
+.message.chat {
+  color: black; /* Default color for chat messages */
+}
+
+.message-input {
+  width: calc(100% - 60px);
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.send-button {
+  padding: 10px;
+  margin-left: 5px;
+}
